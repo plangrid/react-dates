@@ -97,16 +97,16 @@ export default class SingleDatePicker extends React.Component {
     window.removeEventListener('resize', this.responsivizePickerPosition);
   }
 
-  onChange(dateString) {
+  onChange(dateString, e) {
     const { isOutsideRange, keepOpenOnDateSelect, onDateChange, onFocusChange } = this.props;
     const date = toMomentObject(dateString, this.getDisplayFormat());
 
     const isValid = date && !isOutsideRange(date);
     if (isValid) {
-      onDateChange(date);
+      onDateChange(date, e);
       if (!keepOpenOnDateSelect) onFocusChange({ focused: false });
     } else {
-      onDateChange(null);
+      onDateChange(null, e);
     }
   }
 
@@ -177,7 +177,7 @@ export default class SingleDatePicker extends React.Component {
 
   clearDate() {
     const { onDateChange, reopenPickerOnClearDate, onFocusChange } = this.props;
-    onDateChange(null);
+    onDateChange(null, e);
     if (reopenPickerOnClearDate) {
       onFocusChange({ focused: true });
     }
