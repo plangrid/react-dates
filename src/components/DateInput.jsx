@@ -67,7 +67,7 @@ export default class DateInput extends React.Component {
     const dateString = e.target.value;
 
     this.setState({ dateString });
-    this.props.onChange(dateString);
+    this.props.onChange(dateString, e);
   }
 
   onKeyDown(e) {
